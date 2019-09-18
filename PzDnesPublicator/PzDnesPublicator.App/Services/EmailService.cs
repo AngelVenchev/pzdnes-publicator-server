@@ -1,15 +1,12 @@
-﻿using OpenPop.Mime;
-using OpenPop.Pop3;
+﻿using OpenPop.Pop3;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Mail;
-using System.Threading.Tasks;
 
 namespace PzDnesPublicator.App.Services
 {
-    public class EmailService
+  public class EmailService
     {
-        public async Task<MailMessage> GetEmail(string username, string password, string senderFilter)
+        public MailMessage GetEmail(string username, string password, string senderFilter)
         {
             using (Pop3Client client = new Pop3Client())
             {

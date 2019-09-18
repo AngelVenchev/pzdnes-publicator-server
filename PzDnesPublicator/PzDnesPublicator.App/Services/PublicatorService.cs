@@ -17,7 +17,7 @@ namespace PzDnesPublicator.App.Services
 
         public async Task<NewsDTO> GetNews(CredentialsDTO credentials)
         {
-            string text = await GetContentFromEmail(credentials.EmailUsername, credentials.EmailPassword, credentials.EmailSenderFilter);
+            string text = GetContentFromEmail(credentials.EmailUsername, credentials.EmailPassword, credentials.EmailSenderFilter);
             NewsDTO news = GetNews(text);
             return news;
         }
@@ -40,9 +40,9 @@ namespace PzDnesPublicator.App.Services
             return news;
         }
 
-        private async Task<string> GetContentFromEmail(string username, string password, string senderFilter)
+        private string GetContentFromEmail(string username, string password, string senderFilter)
         {
-            var email = await _emailService.GetEmail(username, password, senderFilter);
+            var email = _emailService.GetEmail(username, password, senderFilter);
 
             var text = string.Empty;
             if (email.Attachments.Any())

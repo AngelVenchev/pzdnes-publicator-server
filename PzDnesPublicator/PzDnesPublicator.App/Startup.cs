@@ -26,6 +26,17 @@ namespace PzDnesPublicator.App
         // This method gets called by the runtime. Use this method to add services to the container
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder => 
+                    builder.WithOrigins(
+                        "https://publicator.venchev.com",
+                        "http://publicator.venchev.com",
+                        "http://localhost:3000")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Add S3 to the ASP.NET Core dependency injection framework.
